@@ -12,7 +12,7 @@ pipeline {
                 script {
 
                     gitCheckout(
-                        branch: "develop",
+                        branch: "main",
                         url: "https://github.com/franklinfoko/registry-test.git"
                     )
                 }
