@@ -52,17 +52,17 @@ pipeline {
             }
         }
 
-        // stage('Static Code Analysis: SonarQube') {
+        stage('Static Code Analysis: SonarQube') {
 
-        //     when { expression { params.action == 'create' } }
+            when { expression { params.action == 'create' } }
 
-        //     steps {
+            steps {
 
-        //         script {
+                script {
 
-        //             staticCodeAnalysis()
-        //         }
-        //     }
-        // }
+                    staticCodeAnalysis()
+                }
+            }
+        }
     }
 }
