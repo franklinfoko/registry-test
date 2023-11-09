@@ -13,7 +13,7 @@ pipeline {
 
                     gitCheckout(
                         branch: "develop",
-                        url: "https://gitlab.com/team-genesis1/abc-registry.git"
+                        url: "https://github.com/franklinfoko/registry-test.git"
                     )
                 }
             }
