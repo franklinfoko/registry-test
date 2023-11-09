@@ -19,7 +19,6 @@ pipeline {
             }
         }
 
-        // Unit Testing
         stage('Unit Test Maven') {
 
             steps {
@@ -27,6 +26,17 @@ pipeline {
                 script {
 
                     mvnTest()
+                }
+            }
+        }
+
+        stage('Integration Test Maven') {
+
+            steps {
+
+                script {
+
+                    mvnIntegrationTest()
                 }
             }
         }
