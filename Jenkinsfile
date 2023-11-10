@@ -6,6 +6,11 @@ pipeline {
     parameters {
 
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose Create/Destroy')
+        string(name: 'imageRepoName', description: 'name of image repository on ECR', defaultValue: 'abc-registry')
+        string(name: 'awsAccountId', description: 'ID of aws account to deploy on it', defaultValue: '989481297723')
+        string(name: 'imageTag', description: 'tag of image', defaultValue: 'develop')
+        string(name: 'awsDefaultregion', description: 'the default aws region where we work', defaultValue: 'us-east-1')
+    
     }
 
     stages {
@@ -89,6 +94,19 @@ pipeline {
                 script {
 
                     mvnBuild()
+                }
+            }
+        }
+
+        stage('Docker Image Build') {
+
+            when { expression { params.action == 'create' } }
+
+            steps {
+
+                script {
+
+                    dockerBuild("${params.imageRepoName}", "${params.awsAccountId}", "${params.imageTag}", "${params.awsDefaultregion}")
                 }
             }
         }
