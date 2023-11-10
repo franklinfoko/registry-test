@@ -110,5 +110,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Image Scan: trivy') {
+
+            when { expression { params.action == 'create' } }
+
+            steps {
+
+                script {
+
+                    dockerImageScan("${params.imageRepoName}", "${params.awsAccountId}", "${params.imageTag}", "${params.awsDefaultregion}")
+                }
+            }
+        }
     }
 }
